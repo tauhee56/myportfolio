@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Home, User, Briefcase, Code, DollarSign, Mail } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -18,11 +18,12 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
-      
+
       // Update active section based on scroll position
       const sections = navItems.map(item => item.href.substring(1))
       const currentSection = sections.find(section => {
@@ -33,7 +34,7 @@ export default function Navigation() {
         }
         return false
       })
-      
+
       if (currentSection) {
         setActiveSection(currentSection)
       }
@@ -43,17 +44,41 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+
   const handleNavClick = (href: string) => {
+    // Close mobile menu immediately
+    setIsOpen(false)
+
+    // Navigate to section
     const element = document.getElementById(href.substring(1))
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      // Small delay to ensure smooth transition
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 300)
     }
-    setIsOpen(false)
   }
 
   return (
     <>
       <motion.nav
+        ref={navRef}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -158,12 +183,16 @@ export default function Navigation() {
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 + 0.2 }}
-                        onClick={() => handleNavClick(item.href)}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          handleNavClick(item.href)
+                        }}
                         className={cn(
-                          "w-full text-left px-6 py-4 rounded-xl text-base font-semibold transition-all duration-300 flex items-center gap-4 group min-h-[3.5rem]",
+                          "w-full text-left px-6 py-4 rounded-xl text-base font-semibold transition-all duration-300 flex items-center gap-4 group min-h-[3.5rem] cursor-pointer",
                           activeSection === item.href.substring(1)
                             ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-                            : "text-gray-300 hover:bg-white/10 hover:text-white"
+                            : "text-gray-300 hover:bg-white/10 hover:text-white active:bg-white/20"
                         )}
                       >
                         <Icon size={20} className="transition-transform group-hover:scale-110" />
