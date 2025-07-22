@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, GraduationCap, Award, Code, Smartphone, Globe, Brain } from 'lucide-react'
+import { Calendar, MapPin, GraduationCap, Code, Smartphone, Globe, Brain } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '@/lib/utils'
 
 const journeySteps = [
@@ -79,16 +79,6 @@ export default function About() {
                     <p className="text-gray-400 text-sm font-medium mb-2">Education</p>
                     <p className="text-white font-bold text-lg mb-1">BS Information Technology</p>
                     <p className="text-gray-500 text-sm">BZU Sub Campus Lodhran, Multan</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <Award size={28} className="text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-gray-400 text-sm font-medium mb-2">CGPA</p>
-                    <p className="text-white font-bold text-lg">3.52</p>
                   </div>
                 </div>
 
