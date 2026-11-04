@@ -23,7 +23,7 @@ doc
   .moveDown(0.4)
   .fontSize(10)
   .fillColor("#374151")
-  .text("Email: 1@tauheed.works  |  Phone: +92 307 9317054")
+  .text("Email: i@tauheed.works  |  Phone: +92 307 9317054")
 doc.text("Portfolio: https://tauheed.works  |  GitHub: https://github.com/tauhee56")
 doc.text("LinkedIn: https://www.linkedin.com/in/tauheed-ahmad-sukhera-b00719399")
 

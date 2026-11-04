@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Professional portfolio of Tauheed Ahmad - Full Stack Developer specializing in React, Node.js, AI Integration, and Mobile App Development. 5+ years of experience in web and app development.",
   url: "https://tauheed.works",
-  email: "1@tauheed.works",
+  email: "i@tauheed.works",
   phone: "+923079317054",
   phoneDisplay: "+92 307 9317054",
   location: "Pakistan",
