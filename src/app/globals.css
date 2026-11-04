@@ -559,56 +559,41 @@ img, video, canvas, svg {
 /* Responsive Utilities */
 @media (max-width: 640px) {
   .section {
-    padding: 3.5rem 0;
+    padding: 3rem 0;
   }
 
   .section-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.75rem;
   }
 
   .section-title {
-    font-size: 2rem;
-    line-height: 1.15;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
   }
 
   .section-subtitle {
-    font-size: 1rem;
-    line-height: 1.6;
-    padding-inline: 0.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    padding-inline: 0;
   }
 
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
     width: 100%;
-  }
-
-  .btn {
-    padding: 0.875rem 1.25rem;
-    font-size: 0.875rem;
-    min-height: 2.875rem;
-    white-space: normal;
-    width: 100%;
-  }
-
-  .btn-lg {
-    padding: 1rem 1.5rem;
-    font-size: 0.9375rem;
-    min-height: 3.125rem;
+    max-width: 100%;
   }
 
   .card {
-    padding: 1.25rem !important;
-    margin-bottom: 1rem;
+    padding: 1.125rem !important;
+    margin-bottom: 0;
     border-radius: 1rem;
   }
 
-  .card.p-8 {
-    padding: 1.25rem !important;
-  }
-
+  .card.p-8,
   .card.p-10 {
-    padding: 1.5rem !important;
+    padding: 1.125rem !important;
   }
 
   .card-hover:hover,
@@ -616,31 +601,40 @@ img, video, canvas, svg {
     transform: none;
   }
 
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
   .form-input {
-    padding: 0.875rem 1rem;
+    padding: 0.75rem 0.875rem;
     font-size: 16px; /* prevents iOS zoom */
   }
 
   .form-label {
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.8125rem;
+    margin-bottom: 0.375rem;
   }
 
   .grid-auto {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .grid-2,
   .grid-3,
   .grid-4 {
-    gap: 1.25rem;
+    gap: 1rem;
   }
 }
 
 @media (max-width: 380px) {
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
+  }
+
+  .container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
   }
 }
 
@@ -877,4 +871,37 @@ img, video, canvas, svg {
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
   min-height: 2.5rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Mobile button/card overrides MUST come after base .btn rules */
+@media (max-width: 640px) {
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    min-height: 2.75rem;
+    white-space: normal;
+    width: auto;
+    max-width: 100%;
+    gap: 0.5rem;
+  }
+
+  .btn-lg {
+    padding: 0.875rem 1.15rem;
+    font-size: 0.9375rem;
+    min-height: 3rem;
+  }
+
+  .btn-sm {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    min-height: 2.375rem;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
 }

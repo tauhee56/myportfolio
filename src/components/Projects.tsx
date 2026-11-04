@@ -51,10 +51,10 @@ export default function Projects() {
               transition={{ delay: index * 0.1 + 0.3 }}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className={`relative px-4 sm:px-8 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 w-auto ${
+              className={`relative px-3.5 sm:px-8 py-2 sm:py-3 rounded-xl text-xs sm:text-base font-semibold transition-all duration-300 shrink-0 ${
                 activeCategory === category
-                  ? "btn btn-primary !w-auto"
-                  : "btn btn-ghost !w-auto"
+                  ? "btn btn-primary"
+                  : "btn btn-ghost"
               }`}
             >
               {category}
@@ -155,7 +155,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
-                        className="btn btn-secondary flex-1 !w-auto"
+                        className="btn btn-secondary flex-1 btn-block sm:!w-auto"
                       >
                         <Github size={18} />
                         Code
@@ -166,7 +166,7 @@ export default function Projects() {
                       onClick={() => setSelectedProject(project)}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="btn btn-primary flex-1 !w-auto"
+                      className="btn btn-primary flex-1 btn-block sm:!w-auto"
                     >
                       <ExternalLink size={18} />
                       Details

@@ -124,9 +124,9 @@ export default function Pricing() {
                 transition={{ delay: plan.delay, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className={`relative card card-interactive p-8 ${
+                className={`relative card card-interactive !p-5 sm:!p-8 ${
                   plan.popular
-                    ? "bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border-indigo-500/50 shadow-2xl shadow-indigo-500/20"
+                    ? "bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border-indigo-500/50 shadow-2xl shadow-indigo-500/20 mt-4 sm:mt-0"
                     : "card-glass"
                 }`}
               >
@@ -136,9 +136,9 @@ export default function Pricing() {
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: plan.delay + 0.3 }}
-                    className="absolute -top-5 left-1/2 transform -translate-x-1/2 z-10"
+                    className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 z-10"
                   >
-                    <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-xl">
+                    <div className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 sm:px-6 py-1.5 sm:py-3 rounded-full text-xs sm:text-sm font-bold shadow-xl whitespace-nowrap">
                       ⭐ Most Popular
                     </div>
                   </motion.div>
@@ -148,22 +148,23 @@ export default function Pricing() {
                 <div className={`absolute inset-0 bg-gradient-to-br ${plan.color} opacity-0 hover:opacity-5 transition-opacity duration-300 rounded-2xl`} />
 
                 {/* Plan Header */}
-                <div className="relative z-10 text-center mb-10">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${plan.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl`}>
-                    <Icon size={32} className="text-white" />
+                <div className="relative z-10 text-center mb-6 sm:mb-10">
+                  <div className={`w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-br ${plan.color} rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-xl`}>
+                    <Icon size={24} className="text-white sm:hidden" />
+                    <Icon size={32} className="text-white hidden sm:block" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-white mb-3">{plan.name}</h3>
-                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">{plan.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{plan.name}</h3>
+                  <p className="text-gray-400 text-sm mb-4 sm:mb-6 leading-relaxed">{plan.description}</p>
 
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold text-white">{plan.price}</span>
-                    <span className="text-gray-400 ml-2 text-base">{plan.period}</span>
+                  <div className="mb-2 sm:mb-6">
+                    <span className="text-3xl sm:text-4xl font-bold text-white">{plan.price}</span>
+                    <span className="text-gray-400 ml-2 text-sm sm:text-base">{plan.period}</span>
                   </div>
                 </div>
 
                 {/* Features List */}
-                <div className="relative z-10 space-y-4 mb-8">
+                <div className="relative z-10 space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   {plan.features.map((feature, index) => (
                     <motion.div
                       key={feature}
@@ -173,7 +174,7 @@ export default function Pricing() {
                       viewport={{ once: true }}
                       className="flex items-start gap-3"
                     >
-                      <div className={`w-5 h-5 bg-gradient-to-r ${plan.color} rounded-full flex items-center justify-center flex-shrink-0 mt-1`}>
+                      <div className={`w-5 h-5 bg-gradient-to-r ${plan.color} rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
                         <Check size={12} className="text-white" />
                       </div>
                       <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
@@ -186,10 +187,10 @@ export default function Pricing() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className={`w-full ${
+                  className={`btn btn-block ${
                     plan.popular
-                      ? "btn btn-secondary"
-                      : "btn btn-primary"
+                      ? "btn-secondary"
+                      : "btn-primary"
                   }`}
                 >
                   Get Started
@@ -256,7 +257,7 @@ export default function Pricing() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn btn-primary btn-lg sm:!w-auto"
+                  className="btn btn-primary btn-lg btn-block sm:!w-auto"
                 >
                   📧 Get Custom Quote
                 </motion.button>
@@ -266,7 +267,7 @@ export default function Pricing() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-secondary btn-lg sm:!w-auto"
+                  className="btn btn-secondary btn-lg btn-block sm:!w-auto"
                 >
                   💬 WhatsApp Consultation
                 </motion.a>
@@ -334,17 +335,17 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="card card-glass card-hover p-8 group"
+                className="card card-glass card-hover !p-4 sm:!p-8 group"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl">{faq.icon}</span>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-xl sm:text-2xl">{faq.icon}</span>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors duration-300">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-base sm:text-xl font-bold text-white mb-2 sm:mb-4 group-hover:text-indigo-400 transition-colors duration-300">
                       {faq.question}
                     </h4>
-                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    <p className="text-gray-400 leading-relaxed text-sm sm:text-base group-hover:text-gray-300 transition-colors duration-300">
                       {faq.answer}
                     </p>
                   </div>
@@ -359,19 +360,19 @@ export default function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
             viewport={{ once: true }}
-            className="mt-16 text-center"
+            className="mt-10 sm:mt-16 text-center"
           >
-            <div className="card card-glass p-8 max-w-2xl mx-auto">
-              <h4 className="text-2xl font-bold text-white mb-4">Still have questions?</h4>
-              <p className="text-gray-400 mb-6">
+            <div className="card card-glass !p-5 sm:!p-8 max-w-2xl mx-auto">
+              <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Still have questions?</h4>
+              <p className="text-gray-400 mb-5 sm:mb-6 text-sm sm:text-base">
                 Don&apos;t hesitate to reach out! I&apos;m always happy to discuss your project and answer any specific questions you might have.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-block sm:!w-auto"
                 >
                   📧 Contact Me
                 </motion.button>
@@ -381,7 +382,7 @@ export default function Pricing() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-block sm:!w-auto"
                 >
                   💬 Quick Chat
                 </motion.a>

@@ -36,7 +36,7 @@ export default function Testimonials() {
                 className="text-indigo-400/70 mb-6"
                 aria-hidden
               />
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              <p className="text-gray-300 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-8">
                 &ldquo;{item.quote}&rdquo;
               </p>
               <footer>

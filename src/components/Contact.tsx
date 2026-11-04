@@ -129,18 +129,19 @@ export default function Contact() {
             </div>
 
             {/* Contact Cards */}
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
                 const cardClass =
-                  "group card card-glass card-hover p-8 block"
+                  "group card card-glass card-hover !p-4 sm:!p-8 block"
                 const content = (
                   <>
-                    <div className={`w-16 h-16 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <Icon size={28} className="text-white" />
+                    <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-3 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <Icon size={22} className="text-white sm:hidden" />
+                      <Icon size={28} className="text-white hidden sm:block" />
                     </div>
-                    <h4 className="text-lg font-semibold text-white mb-3">{info.title}</h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-200 font-medium">
+                    <h4 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-3">{info.title}</h4>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-200 font-medium text-sm sm:text-base break-all">
                       {info.value}
                     </p>
                   </>
@@ -237,12 +238,12 @@ export default function Contact() {
           <motion.div
             {...fadeInRight}
             transition={{ delay: 0.4 }}
-            className="card card-glass card-hover p-10"
+            className="card card-glass card-hover !p-5 sm:!p-10"
           >
-            <h3 className="text-2xl font-bold text-white mb-8">Send a Message</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-5 sm:mb-8">Send a Message</h3>
             
-            <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid sm:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-8">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-6">
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">
                     Your Name
@@ -313,7 +314,7 @@ export default function Contact() {
                 disabled={isSubmitting || isSubmitted}
                 whileHover={{ scale: isSubmitting || isSubmitted ? 1 : 1.05, y: isSubmitting || isSubmitted ? 0 : -2 }}
                 whileTap={{ scale: isSubmitting || isSubmitted ? 1 : 0.95 }}
-                className={`w-full btn ${
+                className={`btn btn-block ${
                   isSubmitted
                     ? "btn-primary bg-green-600"
                     : isSubmitting
@@ -341,16 +342,16 @@ export default function Contact() {
             </form>
 
             {/* Quick Contact Options */}
-            <div className="mt-8 pt-8 border-t border-gray-700">
-              <p className="text-gray-400 text-sm mb-6 font-medium">Prefer direct contact?</p>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-700">
+              <p className="text-gray-400 text-sm mb-4 sm:mb-6 font-medium">Prefer direct contact?</p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <motion.a
                   href={siteConfig.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-primary bg-green-600 hover:bg-green-700"
+                  className="btn btn-primary btn-block bg-green-600 hover:bg-green-700"
                 >
                   WhatsApp
                 </motion.a>
@@ -358,7 +359,7 @@ export default function Contact() {
                   href={mailtoLink}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-secondary"
+                  className="btn btn-secondary btn-block"
                 >
                   Email
                 </motion.a>

@@ -35,7 +35,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center overflow-x-clip bg-gradient-to-br from-black via-gray-900 to-black pt-6 pb-16 sm:pt-10 sm:pb-20">
+    <section id="home" className="relative min-h-[100svh] flex items-center overflow-x-clip bg-gradient-to-br from-black via-gray-900 to-black pt-4 pb-12 sm:pt-10 sm:pb-20">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient Orbs */}
@@ -68,7 +68,7 @@ export default function Hero() {
       <div className="relative z-10 container w-full">
         <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-24 items-center">
           {/* Left Content */}
-          <div className="space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
+          <div className="space-y-5 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
@@ -133,12 +133,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start w-full sm:w-auto"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full"
             >
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary btn-lg group sm:!w-auto"
+                className="btn btn-primary btn-lg btn-block sm:!w-auto group"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View My Work
@@ -150,7 +150,7 @@ export default function Hero() {
                 download={siteConfig.cvFileName}
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-secondary btn-lg group sm:!w-auto"
+                className="btn btn-secondary btn-lg btn-block sm:!w-auto group"
               >
                 <Download size={20} className="transition-transform group-hover:scale-110" />
                 Download CV
@@ -196,9 +196,9 @@ export default function Hero() {
           <motion.div
             {...fadeInRight}
             transition={{ delay: 0.5 }}
-            className="relative flex justify-center lg:justify-end order-1 lg:order-2 px-6 sm:px-10"
+            className="relative flex justify-center lg:justify-end order-1 lg:order-2 px-4 sm:px-10"
           >
-            <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
+            <div className="relative w-52 h-52 xs:w-56 xs:h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
               {/* Animated Rings */}
               <motion.div
                 animate={{ rotate: 360 }}

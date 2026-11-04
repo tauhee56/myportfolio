@@ -87,28 +87,29 @@ export default function Services() {
                 transition={{ delay: service.delay, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -12, scale: 1.03 }}
-                className="group card card-glass card-interactive overflow-hidden p-10"
+                className="group card card-glass card-interactive overflow-hidden !p-5 sm:!p-8 lg:!p-10"
               >
                 {/* Background Gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
                 
                 {/* Icon */}
-                <div className={`relative z-10 w-24 h-24 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform duration-300 shadow-xl`}>
-                  <Icon size={40} className="text-white" />
+                <div className={`relative z-10 w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br ${service.color} rounded-xl sm:rounded-2xl flex items-center justify-center mb-5 sm:mb-8 lg:mb-10 group-hover:scale-110 transition-transform duration-300 shadow-xl`}>
+                  <Icon size={28} className="text-white sm:hidden" />
+                  <Icon size={40} className="text-white hidden sm:block" />
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 space-y-8">
-                  <h3 className="text-2xl font-bold text-white mb-6 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
+                <div className="relative z-10 space-y-4 sm:space-y-6 lg:space-y-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-0 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
                     {service.title}
                   </h3>
 
-                  <p className="text-gray-400 mb-8 leading-relaxed text-base">
+                  <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
                     {service.description}
                   </p>
 
                   {/* Features */}
-                  <div className="space-y-4">
+                  <div className="space-y-2.5 sm:space-y-4">
                     {service.features.map((feature, featureIndex) => (
                       <motion.div
                         key={feature}
@@ -116,9 +117,9 @@ export default function Services() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: service.delay + featureIndex * 0.1 }}
                         viewport={{ once: true }}
-                        className="flex items-center gap-5"
+                        className="flex items-center gap-3 sm:gap-5"
                       >
-                        <div className={`w-4 h-4 bg-gradient-to-r ${service.color} rounded-full shadow-sm`} />
+                        <div className={`w-2.5 h-2.5 sm:w-4 sm:h-4 bg-gradient-to-r ${service.color} rounded-full shadow-sm shrink-0`} />
                         <span className="text-gray-300 text-sm font-medium">{feature}</span>
                       </motion.div>
                     ))}
@@ -140,30 +141,30 @@ export default function Services() {
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.8 }}
-          className="mt-20"
+          className="mt-12 sm:mt-20"
         >
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,255,255,0.1),transparent_50%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(255,255,255,0.05),transparent_50%)]" />
 
-            <div className="relative p-12 md:p-16 text-center">
+            <div className="relative p-6 sm:p-12 md:p-16 text-center">
               {/* Icon */}
-              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl">
-                <span className="text-4xl">🚀</span>
+              <div className="w-14 h-14 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-5 sm:mb-8 shadow-xl">
+                <span className="text-2xl sm:text-4xl">🚀</span>
               </div>
 
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-6">
                 Ready to Start Your Project?
               </h3>
-              <p className="text-xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-xl text-gray-100 mb-6 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
                 Let&apos;s discuss your ideas and create something amazing together.
                 I&apos;m here to help bring your vision to life with cutting-edge technology and innovative solutions.
               </p>
 
               {/* Features */}
-              <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-12">
                 {[
                   { icon: "💬", title: "Free Consultation", desc: "30-minute strategy call to discuss your project" },
                   { icon: "⚡", title: "Quick Turnaround", desc: "Fast delivery without compromising quality" },
@@ -177,19 +178,20 @@ export default function Services() {
                     viewport={{ once: true }}
                     className="text-center"
                   >
-                    <div className="text-3xl mb-3">{feature.icon}</div>
-                    <h4 className="text-white font-bold mb-2">{feature.title}</h4>
-                    <p className="text-gray-200 text-sm">{feature.desc}</p>
+                    <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{feature.icon}</div>
+                    <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">{feature.title}</h4>
+                    <p className="text-gray-200 text-xs sm:text-sm">{feature.desc}</p>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-10 py-4 bg-white text-indigo-600 font-bold rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+                  className="btn btn-lg btn-block sm:!w-auto bg-white text-indigo-600 hover:bg-gray-100 shadow-lg min-h-[3rem]"
+                  style={{ backgroundImage: 'none' }}
                 >
                   <span>📧</span>
                   Get In Touch
@@ -198,7 +200,8 @@ export default function Services() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-10 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-indigo-600 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+                  className="btn btn-lg btn-block sm:!w-auto border-2 border-white text-white bg-transparent hover:bg-white hover:text-indigo-600 shadow-lg min-h-[3rem]"
+                  style={{ backgroundImage: 'none' }}
                 >
                   <span>👀</span>
                   View My Work
