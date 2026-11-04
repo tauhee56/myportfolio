@@ -6,10 +6,21 @@ import { motion } from 'framer-motion'
 export default function CursorFollower() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    const media = window.matchMedia('(pointer: fine) and (min-width: 1024px)')
+    const sync = () => setEnabled(media.matches)
+    sync()
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
+
+  useEffect(() => {
+    if (!enabled) return
+
+    document.body.classList.add('cursor-none')
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
@@ -17,9 +28,8 @@ export default function CursorFollower() {
     const handleMouseEnter = () => setIsHovering(true)
     const handleMouseLeave = () => setIsHovering(false)
 
-    // Add event listeners to interactive elements
     const interactiveElements = document.querySelectorAll('button, a, [role="button"]')
-    
+
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleMouseEnter)
       el.addEventListener('mouseleave', handleMouseLeave)
@@ -28,21 +38,21 @@ export default function CursorFollower() {
     window.addEventListener('mousemove', handleMouseMove)
 
     return () => {
+      document.body.classList.remove('cursor-none')
       window.removeEventListener('mousemove', handleMouseMove)
       interactiveElements.forEach(el => {
         el.removeEventListener('mouseenter', handleMouseEnter)
         el.removeEventListener('mouseleave', handleMouseLeave)
       })
     }
-  }, [])
+  }, [enabled])
 
-  if (!mounted) return null
+  if (!enabled) return null
 
   return (
     <>
-      {/* Main cursor */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-indigo-500 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-4 h-4 bg-indigo-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
         animate={{
           x: mousePosition.x - 8,
           y: mousePosition.y - 8,
@@ -54,10 +64,9 @@ export default function CursorFollower() {
           damping: 28
         }}
       />
-      
-      {/* Trailing cursor */}
+
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-indigo-500 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-8 h-8 border-2 border-indigo-500 rounded-full pointer-events-none z-50 mix-blend-difference hidden lg:block"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,

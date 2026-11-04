@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Check, Star, Zap, Crown, Rocket } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '@/lib/utils'
+import { siteConfig } from '@/lib/siteConfig'
 
 const pricingPlans = [
   {
@@ -213,16 +214,16 @@ export default function Pricing() {
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 via-purple-600/10 to-pink-600/10 rounded-3xl" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_70%)]" />
 
-            <div className="relative card card-glass p-12 text-center border-indigo-500/20">
+            <div className="relative card card-glass p-6 sm:p-12 text-center border-indigo-500/20">
               {/* Icon */}
-              <div className="w-20 h-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-xl">
                 <span className="text-3xl">🎯</span>
               </div>
 
-              <h3 className="text-3xl font-bold text-white mb-6">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 sm:mb-6">
                 Need Something Custom?
               </h3>
-              <p className="text-gray-400 mb-10 max-w-3xl mx-auto text-lg leading-relaxed">
+              <p className="text-gray-400 mb-8 sm:mb-10 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
                 Every project is unique. If none of these plans fit your specific requirements,
                 let&apos;s discuss a custom solution tailored to your needs and budget. I specialize in
                 creating bespoke solutions that perfectly match your vision.
@@ -250,22 +251,22 @@ export default function Pricing() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn btn-primary btn-lg"
+                  className="btn btn-primary btn-lg sm:!w-auto"
                 >
                   📧 Get Custom Quote
                 </motion.button>
                 <motion.a
-                  href="https://wa.me/923079317054"
+                  href={siteConfig.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn btn-secondary btn-lg"
+                  className="btn btn-secondary btn-lg sm:!w-auto"
                 >
                   💬 WhatsApp Consultation
                 </motion.a>
@@ -280,12 +281,12 @@ export default function Pricing() {
           transition={{ delay: 0.8 }}
           className="mt-24"
         >
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <span className="text-2xl">❓</span>
+          <div className="text-center mb-10 sm:mb-16">
+            <div className="inline-flex items-center justify-center gap-3 mb-6 flex-wrap">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-xl sm:text-2xl">❓</span>
               </div>
-              <h3 className="text-4xl font-bold text-white">
+              <h3 className="text-2xl sm:text-4xl font-bold text-white">
                 Frequently Asked Questions
               </h3>
             </div>
@@ -375,7 +376,7 @@ export default function Pricing() {
                   📧 Contact Me
                 </motion.button>
                 <motion.a
-                  href="https://wa.me/923079317054"
+                  href={siteConfig.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ChevronDown, Download, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import { fadeInRight } from '@/lib/utils'
+import { mailtoLink, siteConfig, telLink } from '@/lib/siteConfig'
 import Image from 'next/image'
 
 const roles = [
@@ -34,24 +35,24 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative full-screen overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black pt-18">
+    <section id="home" className="relative min-h-[100svh] flex items-center overflow-x-clip bg-gradient-to-br from-black via-gray-900 to-black pt-6 pb-16 sm:pt-10 sm:pb-20">
       {/* Animated Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         
         {/* Floating Particles */}
-        {mounted && [...Array(50)].map((_, i) => (
+        {mounted && [...Array(18)].map((_, i) => (
           <motion.div
             key={i}
             initial={{
-              x: (i * 24) % 1200,
-              y: (i * 16) % 800,
+              x: `${(i * 17) % 100}%`,
+              y: `${(i * 13) % 100}%`,
               opacity: 0
             }}
             animate={{
-              y: [null, ((i * 16) % 800) + 100],
+              y: [`${(i * 13) % 100}%`, `${((i * 13) + 20) % 100}%`],
               opacity: [0, 1, 0]
             }}
             transition={{
@@ -64,21 +65,21 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 container text-center">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center min-h-[80vh]">
+      <div className="relative z-10 container w-full">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-24 items-center">
           {/* Left Content */}
-          <div className="space-y-8 text-center lg:text-left">
+          <div className="space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-indigo-400 text-xl font-medium tracking-wide"
+                className="text-indigo-400 text-base sm:text-xl font-medium tracking-wide"
               >
                 Hello, I&apos;m
               </motion.p>
@@ -87,7 +88,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight"
+                className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none tracking-tight"
               >
                 Tauheed
                 <span className="block gradient-text text-glow">Ahmad</span>
@@ -98,9 +99,9 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
-              className="h-24 flex items-center justify-center lg:justify-start"
+              className="min-h-[3.5rem] sm:min-h-[5rem] flex items-center justify-center lg:justify-start"
             >
-              <span className="text-2xl md:text-4xl text-gray-300 font-light">
+              <span className="text-lg sm:text-2xl md:text-4xl text-gray-300 font-light">
                 I&apos;m a{' '}
                 <motion.span
                   key={currentRole}
@@ -119,7 +120,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto lg:mx-0 leading-relaxed font-light"
+              className="text-base sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto lg:mx-0 leading-relaxed font-light"
             >
               BS Information Technology graduate with{' '}
               <span className="text-indigo-400 font-semibold">5+ years</span> of experience in web development,
@@ -132,12 +133,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.8 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center lg:justify-start w-full sm:w-auto"
             >
               <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-primary btn-lg group"
+                className="btn btn-primary btn-lg group sm:!w-auto"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 View My Work
@@ -145,11 +146,11 @@ export default function Hero() {
               </motion.button>
 
               <motion.a
-                href="/CV-Tauheed-Ahmad.docx"
-                download="CV-Tauheed-Ahmad.docx"
+                href={siteConfig.cvPath}
+                download={siteConfig.cvFileName}
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-secondary btn-lg group"
+                className="btn btn-secondary btn-lg group sm:!w-auto"
               >
                 <Download size={20} className="transition-transform group-hover:scale-110" />
                 Download CV
@@ -161,13 +162,13 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1 }}
-              className="flex gap-6 justify-center lg:justify-start"
+              className="flex gap-4 sm:gap-6 justify-center lg:justify-start"
             >
               {[
-                { icon: Github, href: "https://github.com/tauhee56", label: "GitHub" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Mail, href: "mailto:meettauheed@gmail.com", label: "Email" },
-                { icon: Phone, href: "tel:+923079317054", label: "Phone" }
+                { icon: Github, href: siteConfig.github, label: "GitHub" },
+                { icon: Linkedin, href: siteConfig.linkedin, label: "LinkedIn" },
+                { icon: Mail, href: mailtoLink, label: "Email" },
+                { icon: Phone, href: telLink, label: "Phone" }
               ].map((social, index) => {
                 const Icon = social.icon
                 return (
@@ -195,9 +196,9 @@ export default function Hero() {
           <motion.div
             {...fadeInRight}
             transition={{ delay: 0.5 }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end order-1 lg:order-2 px-6 sm:px-10"
           >
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+            <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96">
               {/* Animated Rings */}
               <motion.div
                 animate={{ rotate: 360 }}
@@ -211,14 +212,14 @@ export default function Hero() {
               />
 
               {/* Profile Image Container */}
-              <div className="absolute inset-6 rounded-full overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-1.5 shadow-2xl shadow-indigo-500/25">
+              <div className="absolute inset-4 sm:inset-6 rounded-full overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-1.5 shadow-2xl shadow-indigo-500/25">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 relative">
                   <Image
                     src="/tauheed-ahmad.jpg"
                     alt="Tauheed Ahmad"
                     width={500}
                     height={500}
-                    className="w-full h-full object-cover scale-110 hover:scale-115 transition-transform duration-700"
+                    className="w-full h-full object-cover scale-110 transition-transform duration-700"
                     priority
                     style={{
                       objectPosition: 'center 15%',
@@ -230,12 +231,12 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating Tech Icons */}
+              {/* Floating Tech Icons — inward on mobile to avoid horizontal overflow */}
               {[
-                { name: '⚛️', label: 'React', pos: 'top-0 left-1/2 -translate-x-1/2 -translate-y-1/2' },
-                { name: '🟢', label: 'Node.js', pos: 'top-1/2 right-0 translate-x-1/2 -translate-y-1/2' },
-                { name: '🤖', label: 'AI', pos: 'bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2' },
-                { name: '📱', label: 'Mobile', pos: 'top-1/2 left-0 -translate-x-1/2 -translate-y-1/2' }
+                { name: '⚛️', label: 'React', pos: 'top-1 left-1/2 -translate-x-1/2 sm:top-0 sm:-translate-y-1/2' },
+                { name: '🟢', label: 'Node.js', pos: 'top-1/2 right-1 -translate-y-1/2 sm:right-0 sm:translate-x-1/2' },
+                { name: '🤖', label: 'AI', pos: 'bottom-1 left-1/2 -translate-x-1/2 sm:bottom-0 sm:translate-y-1/2' },
+                { name: '📱', label: 'Mobile', pos: 'top-1/2 left-1 -translate-y-1/2 sm:left-0 sm:-translate-x-1/2' }
               ].map((tech, index) => (
                 <motion.div
                   key={tech.label}
@@ -243,11 +244,11 @@ export default function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1 + index * 0.2 }}
                   whileHover={{ scale: 1.1, y: -5 }}
-                  className={`absolute ${tech.pos} w-18 h-18 bg-gray-800/90 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center text-indigo-400 animate-float border border-gray-700/50 shadow-lg hover:shadow-indigo-500/25 transition-all duration-300`}
+                  className={`absolute ${tech.pos} w-12 h-12 sm:w-16 sm:h-16 lg:w-18 lg:h-18 bg-gray-800/90 backdrop-blur-sm rounded-xl flex flex-col items-center justify-center text-indigo-400 animate-float border border-gray-700/50 shadow-lg hover:shadow-indigo-500/25 transition-all duration-300`}
                   style={{ animationDelay: `${index * 0.5}s` }}
                 >
-                  <span className="text-2xl mb-1">{tech.name}</span>
-                  <span className="text-xs font-medium">{tech.label}</span>
+                  <span className="text-base sm:text-xl lg:text-2xl sm:mb-0.5">{tech.name}</span>
+                  <span className="hidden sm:block text-[10px] lg:text-xs font-medium">{tech.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -259,7 +260,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2"
         >
           <motion.button
             onClick={scrollToNext}

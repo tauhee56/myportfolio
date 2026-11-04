@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Home, User, Briefcase, Code, DollarSign, Mail } from 'lucide-react'
+import { Menu, X, Home, User, Briefcase, Code, DollarSign, Mail, MessageSquareQuote } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -10,6 +10,7 @@ const navItems = [
   { name: 'About', href: '#about', icon: User },
   { name: 'Services', href: '#services', icon: Briefcase },
   { name: 'Projects', href: '#projects', icon: Code },
+  { name: 'Testimonials', href: '#testimonials', icon: MessageSquareQuote },
   { name: 'Pricing', href: '#pricing', icon: DollarSign },
   { name: 'Contact', href: '#contact', icon: Mail },
 ]
@@ -44,7 +45,7 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside + lock body scroll
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -54,10 +55,14 @@ export default function Navigation() {
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
+      document.body.style.overflow = ''
     }
   }, [isOpen])
 
@@ -95,22 +100,23 @@ export default function Navigation() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex-shrink-0 cursor-pointer"
+              className="flex-shrink-0 cursor-pointer min-w-0"
               onClick={() => handleNavClick('#home')}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-base">TA</span>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                  <span className="text-white font-bold text-sm sm:text-base">TA</span>
                 </div>
-                <h1 className="text-xl lg:text-2xl font-bold gradient-text">
-                  Tauheed Ahmad
+                <h1 className="text-base sm:text-xl lg:text-2xl font-bold gradient-text truncate">
+                  <span className="sm:hidden">Tauheed</span>
+                  <span className="hidden sm:inline">Tauheed Ahmad</span>
                 </h1>
               </div>
             </motion.div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:block">
-              <div className="flex items-center space-x-4">
+            {/* Desktop Navigation — lg+ so tablet stays clean with hamburger */}
+            <div className="hidden lg:block">
+              <div className="flex items-center gap-1 xl:gap-2">
                 {navItems.map((item, index) => {
                   const Icon = item.icon
                   return (
@@ -123,13 +129,13 @@ export default function Navigation() {
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       className={cn(
-                        "relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 group",
+                        "relative px-2.5 xl:px-3 py-2 rounded-xl text-xs xl:text-sm font-medium transition-all duration-300 flex items-center gap-1.5 group",
                         activeSection === item.href.substring(1)
                           ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25"
                           : "text-gray-300 hover:text-white hover:bg-white/10"
                       )}
                     >
-                      <Icon size={16} className="transition-transform group-hover:scale-110" />
+                      <Icon size={14} className="transition-transform group-hover:scale-110 shrink-0" />
                       <span className="font-medium">{item.name}</span>
                       {activeSection === item.href.substring(1) && (
                         <motion.div
@@ -144,13 +150,14 @@ export default function Navigation() {
               </div>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+            {/* Mobile / tablet menu button */}
+            <div className="lg:hidden">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative p-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 focus:outline-none"
+                className="relative p-2.5 sm:p-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 focus:outline-none"
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
               >
                 <motion.div
                   animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
@@ -171,10 +178,10 @@ export default function Navigation() {
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="md:hidden glass border-t border-white/10"
+              className="lg:hidden glass border-t border-white/10 max-h-[80vh] overflow-y-auto"
             >
-              <div className="container py-4">
-                <div className="space-y-2">
+              <div className="container py-3 sm:py-4">
+                <div className="space-y-1.5">
                   {navItems.map((item, index) => {
                     const Icon = item.icon
                     return (
@@ -182,20 +189,20 @@ export default function Navigation() {
                         key={item.name}
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 + 0.2 }}
+                        transition={{ delay: index * 0.05 + 0.1 }}
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
                           handleNavClick(item.href)
                         }}
                         className={cn(
-                          "w-full text-left px-6 py-4 rounded-xl text-base font-semibold transition-all duration-300 flex items-center gap-4 group min-h-[3.5rem] cursor-pointer",
+                          "w-full text-left px-4 sm:px-6 py-3.5 rounded-xl text-base font-semibold transition-all duration-300 flex items-center gap-3 group min-h-[3rem] cursor-pointer",
                           activeSection === item.href.substring(1)
                             ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
                             : "text-gray-300 hover:bg-white/10 hover:text-white active:bg-white/20"
                         )}
                       >
-                        <Icon size={20} className="transition-transform group-hover:scale-110" />
+                        <Icon size={18} className="transition-transform group-hover:scale-110 shrink-0" />
                         {item.name}
                       </motion.button>
                     )

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, MessageCircle, Clock, CheckCircle } from 'lucide-react'
 import { fadeInUp, fadeInLeft, fadeInRight } from '@/lib/utils'
+import { mailtoLink, siteConfig, telLink } from '@/lib/siteConfig'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -43,30 +44,34 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      value: "meettauheed@gmail.com",
-      link: "mailto:meettauheed@gmail.com",
-      color: "from-blue-500 to-cyan-500"
+      value: siteConfig.email,
+      link: mailtoLink,
+      color: "from-blue-500 to-cyan-500",
+      clickable: true,
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+92 307 9317054",
-      link: "tel:+923079317054",
-      color: "from-green-500 to-emerald-500"
+      value: siteConfig.phoneDisplay,
+      link: telLink,
+      color: "from-green-500 to-emerald-500",
+      clickable: true,
     },
     {
       icon: MessageCircle,
       title: "WhatsApp",
-      value: "+92 307 9317054",
-      link: "https://wa.me/923079317054",
-      color: "from-green-500 to-green-600"
+      value: siteConfig.phoneDisplay,
+      link: siteConfig.whatsapp,
+      color: "from-green-500 to-green-600",
+      clickable: true,
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "Pakistan",
-      link: "#",
-      color: "from-purple-500 to-pink-500"
+      value: siteConfig.location,
+      link: null as string | null,
+      color: "from-purple-500 to-pink-500",
+      clickable: false,
     }
   ]
 
@@ -74,19 +79,19 @@ export default function Contact() {
     {
       icon: Github,
       name: "GitHub",
-      url: "https://github.com/tauhee56",
+      url: siteConfig.github,
       color: "hover:text-gray-400"
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      url: "#",
+      url: siteConfig.linkedin,
       color: "hover:text-blue-400"
     },
     {
       icon: Mail,
       name: "Email",
-      url: "mailto:meettauheed@gmail.com",
+      url: mailtoLink,
       color: "hover:text-red-400"
     }
   ]
@@ -127,6 +132,35 @@ export default function Contact() {
             <div className="grid sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon
+                const cardClass =
+                  "group card card-glass card-hover p-8 block"
+                const content = (
+                  <>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <Icon size={28} className="text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-white mb-3">{info.title}</h4>
+                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-200 font-medium">
+                      {info.value}
+                    </p>
+                  </>
+                )
+
+                if (!info.clickable || !info.link) {
+                  return (
+                    <motion.div
+                      key={info.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      viewport={{ once: true }}
+                      className={cardClass}
+                    >
+                      {content}
+                    </motion.div>
+                  )
+                }
+
                 return (
                   <motion.a
                     key={info.title}
@@ -138,15 +172,9 @@ export default function Contact() {
                     transition={{ delay: 0.3 + index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ y: -5, scale: 1.02 }}
-                    className="group card card-glass card-hover p-8"
+                    className={cardClass}
                   >
-                    <div className={`w-16 h-16 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <Icon size={28} className="text-white" />
-                    </div>
-                    <h4 className="text-lg font-semibold text-white mb-3">{info.title}</h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-200 font-medium">
-                      {info.value}
-                    </p>
+                    {content}
                   </motion.a>
                 )
               })}
@@ -317,7 +345,7 @@ export default function Contact() {
               <p className="text-gray-400 text-sm mb-6 font-medium">Prefer direct contact?</p>
               <div className="grid grid-cols-2 gap-4">
                 <motion.a
-                  href="https://wa.me/923079317054"
+                  href={siteConfig.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -327,7 +355,7 @@ export default function Contact() {
                   WhatsApp
                 </motion.a>
                 <motion.a
-                  href="mailto:meettauheed@gmail.com"
+                  href={mailtoLink}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn btn-secondary"

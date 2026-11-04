@@ -20,7 +20,7 @@ const journeySteps = [
     color: "bg-green-500"
   },
   {
-    year: "2023-2025",
+    year: "2023-2026",
     title: "Mobile App Development",
     description: "Transitioned to mobile app development with React Native and Android Java. Built cross-platform applications with modern UI/UX.",
     icon: Smartphone,
@@ -71,34 +71,37 @@ export default function About() {
               <h3 className="text-2xl font-bold text-white mb-10">Personal Details</h3>
 
               <div className="space-y-8">
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <GraduationCap size={28} className="text-white" />
+                <div className="flex items-center gap-4 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <GraduationCap size={22} className="text-white sm:hidden" />
+                    <GraduationCap size={28} className="text-white hidden sm:block" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-gray-400 text-sm font-medium mb-2">Education</p>
-                    <p className="text-white font-bold text-lg mb-1">BS Information Technology</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-400 text-sm font-medium mb-1 sm:mb-2">Education</p>
+                    <p className="text-white font-bold text-base sm:text-lg mb-1">BS Information Technology</p>
                     <p className="text-gray-500 text-sm">BZU Sub Campus Lodhran, Multan</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <Calendar size={28} className="text-white" />
+                <div className="flex items-center gap-4 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <Calendar size={22} className="text-white sm:hidden" />
+                    <Calendar size={28} className="text-white hidden sm:block" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-gray-400 text-sm font-medium mb-2">Graduation</p>
-                    <p className="text-white font-bold text-lg">2025</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-400 text-sm font-medium mb-1 sm:mb-2">Graduation</p>
+                    <p className="text-white font-bold text-base sm:text-lg">2025</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <MapPin size={28} className="text-white" />
+                <div className="flex items-center gap-4 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                    <MapPin size={22} className="text-white sm:hidden" />
+                    <MapPin size={28} className="text-white hidden sm:block" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-gray-400 text-sm font-medium mb-2">Location</p>
-                    <p className="text-white font-bold text-lg">Pakistan</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-400 text-sm font-medium mb-1 sm:mb-2">Location</p>
+                    <p className="text-white font-bold text-base sm:text-lg">Pakistan</p>
                   </div>
                 </div>
               </div>
@@ -148,9 +151,9 @@ export default function About() {
 
             <div className="relative">
               {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 rounded-full" />
+              <div className="absolute left-5 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-indigo-600 via-purple-600 to-pink-600 rounded-full" />
 
-              <div className="space-y-12">
+              <div className="space-y-8 sm:space-y-12">
                 {journeySteps.map((step, index) => {
                   const Icon = step.icon
                   return (
@@ -160,21 +163,22 @@ export default function About() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.2 }}
                       viewport={{ once: true }}
-                      className="relative flex items-start gap-8"
+                      className="relative flex items-start gap-4 sm:gap-8"
                     >
                       {/* Timeline Icon */}
-                      <div className={`relative z-10 w-16 h-16 ${step.color} rounded-2xl flex items-center justify-center shadow-xl border-4 border-gray-900`}>
-                        <Icon size={28} className="text-white" />
+                      <div className={`relative z-10 w-10 h-10 sm:w-16 sm:h-16 ${step.color} rounded-xl sm:rounded-2xl flex items-center justify-center shadow-xl border-2 sm:border-4 border-gray-900 shrink-0`}>
+                        <Icon size={18} className="text-white sm:hidden" />
+                        <Icon size={28} className="text-white hidden sm:block" />
                       </div>
 
                       {/* Content */}
-                      <div className="flex-1 card card-glass card-hover p-8">
-                        <div className="flex items-center gap-4 mb-4">
-                          <span className="text-indigo-400 font-bold text-lg bg-indigo-400/10 px-4 py-2 rounded-full">{step.year}</span>
-                          <div className="h-px bg-gradient-to-r from-indigo-400 to-transparent flex-1" />
+                      <div className="flex-1 min-w-0 card card-glass card-hover p-5 sm:p-8">
+                        <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                          <span className="text-indigo-400 font-bold text-sm sm:text-lg bg-indigo-400/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full whitespace-nowrap">{step.year}</span>
+                          <div className="h-px bg-gradient-to-r from-indigo-400 to-transparent flex-1 hidden sm:block" />
                         </div>
-                        <h4 className="text-2xl font-bold text-white mb-4">{step.title}</h4>
-                        <p className="text-gray-400 leading-relaxed text-base">{step.description}</p>
+                        <h4 className="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-4">{step.title}</h4>
+                        <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{step.description}</p>
                       </div>
                     </motion.div>
                   )
@@ -188,7 +192,7 @@ export default function About() {
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.6 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-12 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6"
         >
           {[
             { number: "5+", label: "Years Experience", icon: "🚀" },
@@ -202,13 +206,13 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center card card-glass card-hover p-8"
+              className="text-center card card-glass card-hover p-4 sm:p-8"
             >
-              <div className="text-4xl mb-4">{stat.icon}</div>
-              <div className="text-4xl md:text-5xl font-bold gradient-text mb-3">
+              <div className="text-2xl sm:text-4xl mb-2 sm:mb-4">{stat.icon}</div>
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold gradient-text mb-1 sm:mb-3">
                 {stat.number}
               </div>
-              <div className="text-gray-400 font-medium">{stat.label}</div>
+              <div className="text-gray-400 font-medium text-xs sm:text-base leading-snug">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

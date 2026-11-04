@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Heart, ArrowUp, Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { mailtoLink, siteConfig, telLink } from '@/lib/siteConfig'
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -15,6 +16,7 @@ export default function Footer() {
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Testimonials', href: '#testimonials' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Contact', href: '#contact' }
   ]
@@ -29,10 +31,10 @@ export default function Footer() {
   ]
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/tauhee56', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:meettauheed@gmail.com', label: 'Email' },
-    { icon: Phone, href: 'tel:+923079317054', label: 'Phone' }
+    { icon: Github, href: siteConfig.github, label: 'GitHub' },
+    { icon: Linkedin, href: siteConfig.linkedin, label: 'LinkedIn' },
+    { icon: Mail, href: mailtoLink, label: 'Email' },
+    { icon: Phone, href: telLink, label: 'Phone' }
   ]
 
   return (
@@ -56,10 +58,10 @@ export default function Footer() {
               className="lg:col-span-1"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-xl">TA</span>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shrink-0">
+                  <span className="text-white font-bold text-lg sm:text-xl">TA</span>
                 </div>
-                <h3 className="text-3xl font-bold gradient-text">
+                <h3 className="text-2xl sm:text-3xl font-bold gradient-text">
                   Tauheed Ahmad
                 </h3>
               </div>
@@ -174,7 +176,7 @@ export default function Footer() {
               </h4>
               <div className="space-y-6">
                 <motion.a
-                  href="mailto:meettauheed@gmail.com"
+                  href={mailtoLink}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}
@@ -186,12 +188,12 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500 mb-1">Email</div>
-                    <div className="font-medium">meettauheed@gmail.com</div>
+                    <div className="font-medium">{siteConfig.email}</div>
                   </div>
                 </motion.a>
 
                 <motion.a
-                  href="tel:+923079317054"
+                  href={telLink}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 }}
@@ -203,7 +205,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500 mb-1">Phone</div>
-                    <div className="font-medium">+92 307 9317054</div>
+                    <div className="font-medium">{siteConfig.phoneDisplay}</div>
                   </div>
                 </motion.a>
 
@@ -235,16 +237,16 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="py-10 border-t border-gray-800/50"
+          className="py-8 sm:py-10 border-t border-gray-800/50"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2 text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-center md:text-left">
+            <div className="flex flex-wrap items-center justify-center gap-2 text-gray-400 text-sm sm:text-base">
               <span>© {currentYear} Tauheed Ahmad. Made with</span>
               <Heart size={16} className="text-red-500 animate-pulse" />
               <span>and lots of coffee ☕</span>
             </div>
 
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
               <div className="flex items-center gap-2 text-gray-400 text-sm">
                 <span>Built with</span>
                 <div className="flex items-center gap-2">
@@ -254,7 +256,7 @@ export default function Footer() {
                 <span>&</span>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-cyan-500 rounded-full" />
-                  <span className="text-cyan-400 font-medium">Tailwind CSS</span>
+                  <span className="text-cyan-400 font-medium">Tailwind</span>
                 </div>
               </div>
 
